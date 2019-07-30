@@ -1,26 +1,15 @@
-//  Require the orm page to start adding values
-var orm = require("../config/orm.js");
-
-//Linking orm with our app
-var burger = {
-    selectAll: function(cb) {
-      orm.selectAll("burgers", function(res) {
-        cb(res);
-      });
+module.exports = function(sequelize, Datatype){
+  var Burger = sequelize.define("Burger", {
+    id: {
+      type: Datatype.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
     },
-
-    insertOne: function(cols, vals, cb) {
-      orm.insertOne("burgers", cols, vals, function(res) {
-        cb(res);
-      });
-    },
-
-    updateOne: function(booleanchange,  id, cb) {
-      orm.updateOne("burgers", booleanchange, id, function(res) {
-        cb(res);
-      });
-    },
-  };
-  
-  // Export the database functions for the controller (catsController.js).
-  module.exports = burger;
+    burger_name: Datatype.STRING,
+    devoured: {
+      type: Datatype.BOOLEAN,
+      defaultValue: 0
+    } 
+  });
+  return Burger
+};

@@ -27,7 +27,6 @@ $(function() {
 
     var newBurger = {
       burger_name: $("#bu").val().trim(),
-      devoured: false
     };
 
     // Send the POST request.
